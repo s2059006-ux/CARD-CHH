@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>驚喜翻牌小遊戲</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f2f5;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+
+        /* 卡片外框 */
+        .card {
+            width: 150px;
+            height: 220px;
+            perspective: 1000px; /* 製作 3D 透視感 */
+            cursor: pointer;
+        }
+
+        /* 卡片內部容器 */
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 10px;
+        }
+
+        /* 點擊後翻轉的 Class */
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        /* 正面與背面的共同樣式 */
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden; /* 翻轉到背面時隱藏正面 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+        }
+
+        /* 卡片正面 (點擊前看到的樣子) */
+        .card-front {
+            background-color: #3498db;
+            color: white;
+        }
+
+        /* 卡片背面 (顯示文字) */
+        .card-back {
+            background-color: #ffffff;
+            color: #333;
+            transform: rotateY(180deg); /* 預設先轉 180 度藏起來 */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-face card-front">點我</div>
+            <div class="card-face card-back">寶寶</div>
+        </div>
+    </div>
+
+    <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-face card-front">點我</div>
+            <div class="card-face card-back">爸爸</div>
+        </div>
+    </div>
+
+    <div class="card" onclick="flipCard(this)">
+        <div class="card-inner">
+            <div class="card-face card-front">點我</div>
+            <div class="card-face card-back">媽媽</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function flipCard(card) {
+        // 切換 is-flipped 類別，觸發 CSS 動畫
+        card.classList.toggle('is-flipped');
+    }
+</script>
+
+</body>
+</html>
